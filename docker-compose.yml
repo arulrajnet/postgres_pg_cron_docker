@@ -1,0 +1,19 @@
+
+volumes:
+  pgdata:
+
+services:
+
+  db:
+    build: .
+    image: arulrajnet/postgres_pg_cron:17.4-bookworm
+    restart: on-failure
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: test
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - 5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
